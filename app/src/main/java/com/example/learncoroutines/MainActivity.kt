@@ -7,6 +7,7 @@ import android.widget.Button
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.async
 import kotlinx.coroutines.delay
@@ -26,7 +27,7 @@ class MainActivity : AppCompatActivity() {
         val btn = this.findViewById<Button>(R.id.click_btn)
         btn.setOnClickListener {
             var user = "user"
-            this.lifecycleScope.launch {
+            this.lifecycleScope.launch(Dispatchers.IO) {
                  user =  getUserInfo()
             }
             Log.i(TAG_USER,user)
